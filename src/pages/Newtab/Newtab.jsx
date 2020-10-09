@@ -1,26 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './Newtab.scss';
-import Card from './Card';
+import React, { useEffect, useRef, useState } from 'react'
+import './Newtab.scss'
+import Card from './Card'
 
 const Newtab = () => {
-  const getBookmarks = () => {};
+	const getBookmarks = () => {}
 
-  useEffect(() => {
-    console.log('componentDidMount');
-    return () => {
-      console.log('componentWillUnmount');
-    };
-  }, []);
+	useEffect(() => {
+		console.log('componentDidMount')
+		return () => {
+			console.log('componentWillUnmount')
+		}
+	}, [])
 
-  return (
-    <div className="App">
-      <div className="container">
-        <h1>Aggregator!!</h1>
+	return (
+		<div className="App">
+			<div className="container">
+				<h1>Aggregator!!!</h1>
 
-        <Card />
-      </div>
-    </div>
-  );
-};
+				<Card />
+			</div>
+		</div>
+	)
+}
 
-export default Newtab;
+export default Newtab
