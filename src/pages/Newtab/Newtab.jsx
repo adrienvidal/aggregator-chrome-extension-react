@@ -3,21 +3,44 @@ import './Newtab.scss'
 import Card from './Card'
 
 const Newtab = () => {
-	const getBookmarks = () => {}
+	const [bookmarks, setBookmarks] = useState(null)
+
+	const getBookmarks = () => {
+		// chrome.bookmarks
+
+		chrome.bookmarks.getTree(
+			(bookmarkTreeNodes) => {
+				// console.log('bookmarkTreeNodes', bookmarkTreeNodes[0].children[0].children)
+
+				setBookmarks(bookmarkTreeNodes[0].children[0].children.map((folder) => folder))
+				// $('#bookmarks').append(dumpTreeNodes(bookmarkTreeNodes, query))
+			}
+		)
+	}
 
 	useEffect(() => {
-		console.log('componentDidMount')
+		// console.log('componentDidMount')
+		getBookmarks()
+
 		return () => {
-			console.log('componentWillUnmount')
+			// console.log('componentWillUnmount')
 		}
 	}, [])
+
+	// console.log('bookmarks', bookmarks)
 
 	return (
 		<div className="App">
 			<div className="container">
-				<h1>Aggregator!!!</h1>
+				<h1>Aggregator!!</h1>
 
-				<Card />
+				{bookmarks && bookmarks.map((bookmark) => (
+					<Card
+						bookmark={bookmark}
+						key={bookmark.id}
+					/>
+				))}
+
 			</div>
 		</div>
 	)
