@@ -32,14 +32,59 @@ const Newtab = () => {
 	return (
 		<div className="App">
 			<div className="container">
-				<h1>Aggregator!!</h1>
+				<h1>Aggregator</h1>
 
-				{bookmarks && bookmarks.map((bookmark) => (
-					<Card
-						bookmark={bookmark}
-						key={bookmark.id}
-					/>
-				))}
+				{bookmarks && (
+					<ul>
+						{bookmarks.map((parent) => {
+							console.log('bookmark', parent)
+
+							if (parent.children) {
+								return (
+									<li className="folder">
+										<span>{parent.title}</span>
+										<ul>
+											{parent.children.map((child) => {
+												if (child.children) {
+													return (
+														<li className="folder">
+															<span>{child.title}</span>
+															<ul>
+																{child.children.map((grandChild) => {
+																	if (grandChild.children) {
+																		return (
+																			<li className="folder">
+																				<span>{grandChild.title}</span>
+																				{/* <ul>
+																					{grandChild.children.map((grandGrandChild) => {
+
+																					})}
+																				</ul> */}
+																			</li>
+																		)
+																	}
+																	return (
+																		<li className="bookmark">{grandChild.title}</li>
+																	)
+																})}
+															</ul>
+														</li>
+													)
+												}
+												return (
+													<li className="bookmark">{child.title}</li>
+												)
+											})}
+										</ul>
+									</li>
+								)
+							}
+							return (
+								<li className="bookmark">{parent.title}</li>
+							)
+						})}
+					</ul>
+				)}
 
 			</div>
 		</div>
