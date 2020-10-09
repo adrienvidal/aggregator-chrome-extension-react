@@ -6,14 +6,9 @@ const Newtab = () => {
 	const [bookmarks, setBookmarks] = useState(null)
 
 	const getBookmarks = () => {
-		// chrome.bookmarks
-
 		chrome.bookmarks.getTree(
 			(bookmarkTreeNodes) => {
-				// console.log('bookmarkTreeNodes', bookmarkTreeNodes[0].children[0].children)
-
 				setBookmarks(bookmarkTreeNodes[0].children[0].children.map((folder) => folder))
-				// $('#bookmarks').append(dumpTreeNodes(bookmarkTreeNodes, query))
 			}
 		)
 	}
