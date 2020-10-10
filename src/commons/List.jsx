@@ -7,11 +7,13 @@ export default function List(data) {
 			{data.map((item) => {
 				if (item.children) {
 					return (
-						<li className="folder list-group-item">
+						<li
+							className="folder list-group-item"
+							key={item.id}
+							data-id={item.id}
+						>
 							<span>{item.title}</span>
-							<ul className="list-group">
-								{List(item.children)}
-							</ul>
+							{List(item.children)}
 						</li>
 					)
 				}

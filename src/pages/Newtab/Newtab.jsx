@@ -25,7 +25,7 @@ const Newtab = () => {
 	return (
 		<div className="App">
 			<div className="container">
-				<h1>Aggregator!</h1>
+				<h1>Aggregator!!</h1>
 
 				{bookmarks && List(bookmarks)}
 
