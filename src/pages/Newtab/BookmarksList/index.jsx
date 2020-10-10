@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getBookmarksApi } from '../../../api/bookmarks'
-import List from '../../../commons/List'
+import { getBookmarksFromFavoritesManager } from '../../../api/bookmarks'
+import List from './List'
 // import Card from './Card'
 
 const BookmarksList = () => {
 	const [bookmarks, setBookmarks] = useState(null)
 
 	async function getBookmarks() {
-		setBookmarks(await getBookmarksApi())
+		setBookmarks(await getBookmarksFromFavoritesManager())
 	}
 
 	useEffect(() => {

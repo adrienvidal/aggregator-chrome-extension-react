@@ -2,7 +2,8 @@
   "name": "Aggregator Bookmarks",
   "permissions": [
     "tabs",
-    "bookmarks"
+    "bookmarks",
+    "storage"
   ],
   "options_page": "options.html",
   "background": {
