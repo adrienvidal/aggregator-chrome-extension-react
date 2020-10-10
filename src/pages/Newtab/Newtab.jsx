@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Newtab.scss'
-import {getBookmarksApi} from '../../api/bookmarks'
+import { getBookmarksApi } from '../../api/bookmarks'
+import List from '../../commons/List'
 // import Card from './Card'
 
 const Newtab = () => {
 	const [bookmarks, setBookmarks] = useState(null)
 
 	async function getBookmarks() {
-		const response = await getBookmarksApi()
-		setBookmarks(response)
+		setBookmarks(await getBookmarksApi())
 	}
 
 	useEffect(() => {
@@ -20,34 +20,14 @@ const Newtab = () => {
 		}
 	}, [])
 
-	const uiBookmarks = (list) => list.map((item) => {
-		if (item.children) {
-			return (
-				<li className="folder list-group-item">
-					<span>{item.title}</span>
-					<ul className="list-group">
-						{uiBookmarks(item.children)}
-					</ul>
-				</li>
-			)
-		}
-		return (
-			<li className="bookmark list-group-item">{item.title}</li>
-		)
-	})
-
 	// console.log('bookmarks', bookmarks)
 
 	return (
 		<div className="App">
 			<div className="container">
-				<h1>Aggregator!!</h1>
+				<h1>Aggregator!</h1>
 
-				{bookmarks && (
-					<ul className="list-group">
-						{uiBookmarks(bookmarks)}
-					</ul>
-				)}
+				{bookmarks && List(bookmarks)}
 
 			</div>
 		</div>
