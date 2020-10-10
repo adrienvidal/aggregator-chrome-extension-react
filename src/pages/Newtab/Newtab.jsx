@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Newtab.scss'
+import {Container, Row} from 'react-bootstrap'
 import { getBookmarksApi } from '../../api/bookmarks'
 import List from '../../commons/List'
 // import Card from './Card'
@@ -24,12 +25,14 @@ const Newtab = () => {
 
 	return (
 		<div className="App">
-			<div className="container">
-				<h1>Aggregator!!</h1>
+			<Container>
+				<Row>
+					<h1>Aggregator!!</h1>
 
-				{bookmarks && List(bookmarks)}
+					{bookmarks && List(bookmarks)}
+				</Row>
 
-			</div>
+			</Container>
 		</div>
 	)
 }

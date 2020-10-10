@@ -1,26 +1,26 @@
 import React from 'react'
+import {ListGroup} from 'react-bootstrap'
 
 // list with bootstrap
 export default function List(data) {
 	return (
-		<ul className="list-group">
+		<ListGroup>
 			{data.map((item) => {
 				if (item.children) {
 					return (
-						<li
-							className="folder list-group-item"
+						<ListGroup.Item
 							key={item.id}
 							data-id={item.id}
 						>
 							<span>{item.title}</span>
 							{List(item.children)}
-						</li>
+						</ListGroup.Item>
 					)
 				}
 				return (
 					<li className="bookmark list-group-item">{item.title}</li>
 				)
 			})}
-		</ul>
+		</ListGroup>
 	)
 }
