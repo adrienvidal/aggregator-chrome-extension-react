@@ -1,24 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Newtab.scss'
-import Card from './Card'
+import {getBookmarksApi} from '../../api/bookmarks'
+// import Card from './Card'
 
 const Newtab = () => {
 	const [bookmarks, setBookmarks] = useState(null)
 
-	const getBookmarks = () => {
-		chrome.bookmarks.getTree(
-			(bookmarkTreeNodes) => {
-				setBookmarks(bookmarkTreeNodes[0].children[0].children.map((folder) => folder))
-			}
-		)
+	async function getBookmarks() {
+		const response = await getBookmarksApi()
+		setBookmarks(response)
 	}
 
 	useEffect(() => {
-		// console.log('componentDidMount')
+		console.log('componentDidMount')
 		getBookmarks()
 
 		return () => {
-			// console.log('componentWillUnmount')
+			console.log('componentWillUnmount')
 		}
 	}, [])
 
