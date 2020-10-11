@@ -44,6 +44,7 @@ export function postInBrowserStore(link) {
 							id: aggregatorBookmarks.length + 1,
 							link,
 							title: res.title,
+							description: res.description,
 							image: res.image,
 						})
 
@@ -63,6 +64,7 @@ export function postInBrowserStore(link) {
 							id: 1,
 							link,
 							title: res.title,
+							description: res.description,
 							image: res.image,
 						},
 					]

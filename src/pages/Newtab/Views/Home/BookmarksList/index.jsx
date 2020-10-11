@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Card from './Card'
+import {
+	Container, Row, Col,
+} from 'react-bootstrap'
+import BookmarkItem from './BookmarkItem'
 
 export default function BookmarksList({aggregatorBookmarks}) {
 	// const [aggregatorBookmarks, setAggregatorBookmarks] = useState(null)
@@ -11,14 +14,18 @@ export default function BookmarksList({aggregatorBookmarks}) {
 			</h2>
 
 			<div className="bookmarks-list-content">
-				{aggregatorBookmarks
-					? aggregatorBookmarks.map((Bookmark) => (
-						<Card
-							bookmark={Bookmark}
-							key={Bookmark.id}
-						/>
-					))
-					: <p>No bookmarks yet...</p>}
+				<Row>
+					{aggregatorBookmarks
+						? aggregatorBookmarks.map((aggregatorBookmark) => (
+							<Col sm={3}>
+								<BookmarkItem
+									aggregatorBookmark={aggregatorBookmark}
+									key={aggregatorBookmark.id}
+								/>
+							</Col>
+						))
+						: <p>No bookmarks yet...</p>}
+				</Row>
 			</div>
 		</div>
 	)
