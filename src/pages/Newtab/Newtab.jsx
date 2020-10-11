@@ -3,15 +3,16 @@ import './Newtab.scss'
 import {
 	Container, Row, Form, Button,
 } from 'react-bootstrap'
-import {saveInBrowserStore, clearBrowserStore} from '../../api/bookmarks'
+import {postInBrowserStore, clearBrowserStore} from '../../api/bookmarks'
 
 const Newtab = () => {
 	const linkRef = useRef(null)
 
 	const onClick = (e) => {
 		e.preventDefault()
-		saveInBrowserStore(linkRef.current.value)
+		postInBrowserStore(linkRef.current.value)
 
+		// reset form
 		linkRef.current.value = null
 	}
 
