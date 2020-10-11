@@ -3,29 +3,28 @@ import './Newtab.scss'
 import {
 	Container, Row, Form, Button,
 } from 'react-bootstrap'
-import {saveInBrowserStore} from '../../api/bookmarks'
+import {saveInBrowserStore, clearBrowserStore} from '../../api/bookmarks'
 
 const Newtab = () => {
 	const linkRef = useRef(null)
 
 	const onClick = (e) => {
 		e.preventDefault()
-		const url = linkRef.current.value
+		saveInBrowserStore(linkRef.current.value)
 
-		// must be url
-		const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
-		const regex = new RegExp(expression)
+		linkRef.current.value = null
+	}
 
-		if (url.match(regex)) {
-			saveInBrowserStore(linkRef.current.value)
-		}
+	const clear = (e) => {
+		e.preventDefault()
+		clearBrowserStore()
 	}
 
 	return (
 		<div className="App">
 			<Container>
 				<Row>
-					<h1>Aggregator</h1>
+					<h1>Aggregator!</h1>
 				</Row>
 				<Row>
 					<Form>
@@ -44,6 +43,13 @@ const Newtab = () => {
 							onClick={(e) => onClick(e)}
 						>
 							Submit
+						</Button>
+						<Button
+							variant="secondary"
+							type="submit"
+							onClick={(e) => clear(e)}
+						>
+							Clear Browser Store
 						</Button>
 					</Form>
 				</Row>

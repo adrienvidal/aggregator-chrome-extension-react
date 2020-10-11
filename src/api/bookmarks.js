@@ -9,37 +9,46 @@ export function getBookmarksFromFavoritesManager() {
 }
 
 export function saveInBrowserStore(link) {
-	console.log(link)
+	chrome.storage.local.get('aggregatorBookmarks', (result) => {
+		// must be link
+		const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
+		const regex = new RegExp(expression)
+		if (!link.match(regex)) {
+			alert('Not an url')
+			return null
+		}
 
-	chrome.storage.local.set({key: link}, () => {
-		console.log(`Value is set to ${link}`)
-	})
+		let {aggregatorBookmarks} = result
+		if (aggregatorBookmarks) {
+			const isLinkExist = aggregatorBookmarks.some((el) => el.link === link)
+			if (!isLinkExist) {
+				// push entry
+				aggregatorBookmarks.push({
+					id: aggregatorBookmarks.length + 1,
+					link,
+				})
+			} else {
+				alert('Already in bookmarks')
+			}
+		} else {
+			// create 'aggregatorBookmarks'
+			aggregatorBookmarks = [
+				{
+					id: 1,
+					link,
+				},
+			]
+		}
 
-	chrome.storage.local.get(null, (items) => {
-		const allKeys = Object.keys(items)
-		console.log(items)
+		// set the new array value to the same key
+		chrome.storage.local.set({aggregatorBookmarks}, () => {
+			chrome.storage.local.get('aggregatorBookmarks', (result) => {
+				console.log(result)
+			})
+		})
 	})
 }
 
-/* chrome.storage.local.set({key: value}, () => {
-	console.log(`Value is set to ${value}`)
-})
-
-chrome.storage.local.get(['key'], (result) => {
-	console.log(`Value currently is ${result.key}`)
-}) */
-
-/* chrome.storage.local.get({userKeyIds: []}, function (result) {
-    // the input argument is ALWAYS an object containing the queried keys
-    // so we select the key we need
-    var userKeyIds = result.userKeyIds;
-    userKeyIds.push({keyPairId: keyPairId, HasBeenUploadedYet: false});
-    // set the new array value to the same key
-    chrome.storage.local.set({userKeyIds: userKeyIds}, function () {
-        // you can use strings instead of objects
-        // if you don't  want to define default values
-        chrome.storage.local.get('userKeyIds', function (result) {
-            console.log(result.userKeyIds)
-        });
-    });
-}); */
+export function clearBrowserStore() {
+	chrome.storage.local.remove('aggregatorBookmarks')
+}
