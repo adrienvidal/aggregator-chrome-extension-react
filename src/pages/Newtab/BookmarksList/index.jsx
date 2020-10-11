@@ -1,30 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getBookmarksFromFavoritesManager } from '../../../api/bookmarks'
-import List from './List'
-// import Card from './Card'
+import {getInBrowserStore} from '../../../api/bookmarks'
+import Card from './Card'
 
-const BookmarksList = () => {
-	const [bookmarks, setBookmarks] = useState(null)
+export default function BookmarksList() {
+	const [aggregatorBookmarks, setAggregatorBookmarks] = useState(null)
 
-	async function getBookmarks() {
-		setBookmarks(await getBookmarksFromFavoritesManager())
+	async function getAggregatorBookmarks() {
+		setAggregatorBookmarks(await getInBrowserStore())
 	}
 
 	useEffect(() => {
-		console.log('componentDidMount')
-		getBookmarks()
+		getAggregatorBookmarks()
+	})
 
-		return () => {
-			console.log('componentWillUnmount')
-		}
-	}, [])
+	return (
+		<div className="bookmarks-list">
+			<h2>
+				BookmarksList
+			</h2>
 
-	// console.log('bookmarks', bookmarks)
-
-	if (bookmarks) {
-		return List(bookmarks)
-	}
-	return null
+			<div className="bookmarks-list-content">
+				{aggregatorBookmarks ? aggregatorBookmarks.map((Bookmark) => <Card bookmark={Bookmark} />) : <p>No bookmarks yet...</p> }
+			</div>
+		</div>
+	)
 }
-
-export default BookmarksList

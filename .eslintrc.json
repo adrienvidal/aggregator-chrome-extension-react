@@ -3,7 +3,10 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["plugin:react/recommended", "airbnb"],
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -11,7 +14,9 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": ["react"],
+    "plugins": [
+        "react"
+    ],
     "rules": {
         // opinions
         "indent": [
@@ -22,7 +27,10 @@
             }
         ],
         "no-tabs": "off",
-        "semi": ["error", "never"],
+        "semi": [
+            "error",
+            "never"
+        ],
         "comma-dangle": [
             "error",
             {
@@ -34,8 +42,14 @@
             }
         ],
         // functions
-        "func-name-matching": ["error", "never"],
-        "func-names": ["error", "as-needed"],
+        "func-name-matching": [
+            "error",
+            "never"
+        ],
+        "func-names": [
+            "error",
+            "as-needed"
+        ],
         "func-style": [
             "warn",
             "declaration",
@@ -43,9 +57,18 @@
                 "allowArrowFunctions": true
             }
         ],
-        "function-call-argument-newline": ["error", "consistent"],
-        "function-paren-newline": ["error", "consistent"],
-        "implicit-arrow-linebreak": ["error", "beside"],
+        "function-call-argument-newline": [
+            "error",
+            "consistent"
+        ],
+        "function-paren-newline": [
+            "error",
+            "consistent"
+        ],
+        "implicit-arrow-linebreak": [
+            "error",
+            "beside"
+        ],
         "lines-between-class-members": [
             "error",
             "always",
@@ -61,8 +84,13 @@
         ],
         "no-return-assign": "off",
         // formatting / syntax
-        "multiline-ternary": ["error", "always-multiline"],
-        "newline-per-chained-call": ["warn"],
+        "multiline-ternary": [
+            "error",
+            "always-multiline"
+        ],
+        "newline-per-chained-call": [
+            "warn"
+        ],
         "no-lonely-if": "warn",
         "no-mixed-operators": "warn",
         "no-extra-boolean-cast": "error",
@@ -89,17 +117,32 @@
         "no-multi-assign": "warn",
         "no-unneeded-ternary": "warn",
         "grouped-accessor-pairs": "warn",
-        "operator-assignment": ["warn", "always"],
-        "operator-linebreak": ["warn", "before"],
-        "padded-blocks": ["error", "never"],
+        "operator-assignment": [
+            "warn",
+            "always"
+        ],
+        "operator-linebreak": [
+            "warn",
+            "before"
+        ],
+        "padded-blocks": [
+            "error",
+            "never"
+        ],
         "no-extra-parens": "off",
         "object-curly-spacing": "off",
         "import/no-extraneous-dependencies": "off",
         "import/prefer-default-export": "off",
         // react
         "react/react-in-jsx-scope": "off",
-        "react/jsx-indent": ["error", "tab"],
-        "react/jsx-indent-props": ["error", "tab"],
+        "react/jsx-indent": [
+            "error",
+            "tab"
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            "tab"
+        ],
         "jsx-a11y/anchor-is-valid": "warn",
         "react/jsx-filename-extension": "off",
         "react/jsx-max-props-per-line": [
@@ -112,6 +155,7 @@
         "react/jsx-props-no-spreading": "off",
         // redux
         "no-param-reassign": "off", // this rule is global but needs to be disabled to work w/ latest redux-toolkit (see [immerjs](https://immerjs.github.io/immer/))
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "max-len": "off"
     }
 }

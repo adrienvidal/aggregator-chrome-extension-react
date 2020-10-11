@@ -4,6 +4,7 @@ import {
 	Container, Row, Form, Button,
 } from 'react-bootstrap'
 import {postInBrowserStore, clearBrowserStore} from '../../api/bookmarks'
+import BookmarksList from './BookmarksList'
 
 const Newtab = () => {
 	const linkRef = useRef(null)
@@ -25,7 +26,7 @@ const Newtab = () => {
 		<div className="App">
 			<Container>
 				<Row>
-					<h1>Aggregator!</h1>
+					<h1>Aggregator</h1>
 				</Row>
 				<Row>
 					<Form>
@@ -53,6 +54,9 @@ const Newtab = () => {
 							Clear Browser Store
 						</Button>
 					</Form>
+				</Row>
+				<Row>
+					<BookmarksList />
 				</Row>
 
 			</Container>

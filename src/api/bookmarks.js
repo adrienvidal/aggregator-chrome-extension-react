@@ -8,6 +8,16 @@ export function getBookmarksFromFavoritesManager() {
 	})
 }
 
+export function getInBrowserStore() {
+	return new Promise((resolve) => {
+		chrome.storage.local.get('aggregatorBookmarks', (result) => {
+			const {aggregatorBookmarks} = result
+			console.log('getInBrowserStore', result)
+			resolve(aggregatorBookmarks)
+		})
+	})
+}
+
 export function postInBrowserStore(link) {
 	chrome.storage.local.get('aggregatorBookmarks', (result) => {
 		// must be link
@@ -42,9 +52,9 @@ export function postInBrowserStore(link) {
 
 		// set the new array value to the same key
 		chrome.storage.local.set({aggregatorBookmarks}, () => {
-			chrome.storage.local.get('aggregatorBookmarks', (result) => {
+			/* chrome.storage.local.get('aggregatorBookmarks', (result) => {
 				console.log(result)
-			})
+			}) */
 		})
 	})
 }
