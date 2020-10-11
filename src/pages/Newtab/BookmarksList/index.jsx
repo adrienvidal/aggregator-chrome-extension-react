@@ -1,17 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {getInBrowserStore} from '../../../api/bookmarks'
 import Card from './Card'
 
-export default function BookmarksList() {
-	const [aggregatorBookmarks, setAggregatorBookmarks] = useState(null)
+export default function BookmarksList({aggregatorBookmarks}) {
+	// const [aggregatorBookmarks, setAggregatorBookmarks] = useState(null)
 
-	async function getAggregatorBookmarks() {
-		setAggregatorBookmarks(await getInBrowserStore())
-	}
-
-	useEffect(() => {
-		getAggregatorBookmarks()
-	})
+	console.log('BookmarksList', aggregatorBookmarks)
 
 	return (
 		<div className="bookmarks-list">
