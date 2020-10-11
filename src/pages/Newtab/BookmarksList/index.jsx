@@ -4,8 +4,6 @@ import Card from './Card'
 export default function BookmarksList({aggregatorBookmarks}) {
 	// const [aggregatorBookmarks, setAggregatorBookmarks] = useState(null)
 
-	console.log('BookmarksList', aggregatorBookmarks)
-
 	return (
 		<div className="bookmarks-list">
 			<h2>
@@ -13,7 +11,14 @@ export default function BookmarksList({aggregatorBookmarks}) {
 			</h2>
 
 			<div className="bookmarks-list-content">
-				{aggregatorBookmarks ? aggregatorBookmarks.map((Bookmark) => <Card bookmark={Bookmark} />) : <p>No bookmarks yet...</p> }
+				{aggregatorBookmarks
+					? aggregatorBookmarks.map((Bookmark) => (
+						<Card
+							bookmark={Bookmark}
+							key={Bookmark.id}
+						/>
+					))
+					: <p>No bookmarks yet...</p>}
 			</div>
 		</div>
 	)
