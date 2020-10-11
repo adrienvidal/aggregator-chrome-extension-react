@@ -6,7 +6,10 @@ import './styles.scss'
 
 export default function BookmarkItem({aggregatorBookmark}) {
 	return (
-		<Card className="mb-3">
+		<Card
+			className="mb-3"
+			onClick={() => window.open(aggregatorBookmark.link)}
+		>
 			<div className="img-wrapper">
 				<img src={aggregatorBookmark.image} />
 			</div>
@@ -15,12 +18,6 @@ export default function BookmarkItem({aggregatorBookmark}) {
 				<Card.Text>
 					{aggregatorBookmark.description}
 				</Card.Text>
-				<Button
-					variant="primary"
-					onClick={() => window.open(aggregatorBookmark.link)}
-				>
-					Go somewhere
-				</Button>
 			</Card.Body>
 		</Card>
 	)

@@ -1,5 +1,11 @@
 .card{
     overflow: hidden;
+    cursor: pointer;
+
+    &:hover{
+        box-shadow: -1px 3px 10px 0px rgba(0,0,0,0.10);
+    }
+
     .img-wrapper{
         width: 100%;
         img{

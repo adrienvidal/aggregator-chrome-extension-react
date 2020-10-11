@@ -10,18 +10,21 @@ export default function BookmarksList({aggregatorBookmarks}) {
 	return (
 		<div className="bookmarks-list">
 			<div className="bookmarks-list-content">
-				<Row>
-					{aggregatorBookmarks
-						? aggregatorBookmarks.map((aggregatorBookmark) => (
+
+				{aggregatorBookmarks ? (
+					<Row>
+						{aggregatorBookmarks.map((aggregatorBookmark) => (
 							<Col sm={3}>
 								<BookmarkItem
 									aggregatorBookmark={aggregatorBookmark}
 									key={aggregatorBookmark.id}
 								/>
 							</Col>
-						))
-						: <p>No bookmarks yet...</p>}
-				</Row>
+						)) }
+					</Row>
+				)
+					: <p>No bookmarks yet...</p>}
+
 			</div>
 		</div>
 	)
