@@ -52,9 +52,6 @@ export function postInBrowserStore(link) {
 
 			// set the new array value to the same key
 			chrome.storage.local.set({aggregatorBookmarks}, () => {
-				/* chrome.storage.local.get('aggregatorBookmarks', (result) => {
-					console.log(result)
-				}) */
 				resolve(true)
 			})
 		})
