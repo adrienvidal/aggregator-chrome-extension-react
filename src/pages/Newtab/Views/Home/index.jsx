@@ -41,13 +41,12 @@ export default function Newtab() {
 	return (
 		<div className="home">
 
-			<Form>
+			<Form className="mb-3">
 				<Form.Group controlId="formBasicEmail">
-					<Form.Label>Add Bookmarks</Form.Label>
 					<Form.Control
 						ref={linkRef}
 						type="text"
-						placeholder="url"
+						placeholder="Add Bookmarks"
 					/>
 				</Form.Group>
 
@@ -68,11 +67,6 @@ export default function Newtab() {
 			</Form>
 
 			<BookmarksList aggregatorBookmarks={aggregatorBookmarks} />
-
-			<div
-				className=""
-				id="test"
-			/>
 
 		</div>
 	)

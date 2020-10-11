@@ -1,5 +1,4 @@
 import React from 'react'
-import './Newtab.scss'
 import {
 	Container, Row,
 } from 'react-bootstrap'

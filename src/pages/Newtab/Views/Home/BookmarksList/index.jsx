@@ -9,10 +9,6 @@ export default function BookmarksList({aggregatorBookmarks}) {
 
 	return (
 		<div className="bookmarks-list">
-			<h2>
-				BookmarksList
-			</h2>
-
 			<div className="bookmarks-list-content">
 				<Row>
 					{aggregatorBookmarks
