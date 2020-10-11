@@ -1,3 +1,5 @@
+import {getMetaDataLink} from 'Utils'
+
 export function getBookmarksFromFavoritesManager() {
 	return new Promise((resolve) => {
 		chrome.bookmarks.getTree(
@@ -20,7 +22,7 @@ export function getInBrowserStore() {
 export function postInBrowserStore(link) {
 	return new Promise((resolve) => {
 		chrome.storage.local.get('aggregatorBookmarks', (result) => {
-			// must be link
+			// step 1: must be link
 			const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
 			const regex = new RegExp(expression)
 			if (!link.match(regex)) {
@@ -28,11 +30,15 @@ export function postInBrowserStore(link) {
 				return null
 			}
 
+			// step 2: push local
 			let {aggregatorBookmarks} = result
 			if (aggregatorBookmarks) {
 				const isLinkExist = aggregatorBookmarks.some((el) => el.link === link)
 				if (!isLinkExist) {
 					// push entry
+
+					getMetaDataLink()
+
 					aggregatorBookmarks.push({
 						id: aggregatorBookmarks.length + 1,
 						link,
@@ -50,7 +56,7 @@ export function postInBrowserStore(link) {
 				]
 			}
 
-			// set the new array value to the same key
+			// step 3: push chrome storage
 			chrome.storage.local.set({aggregatorBookmarks}, () => {
 				resolve(true)
 			})

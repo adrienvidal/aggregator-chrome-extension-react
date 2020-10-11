@@ -100,6 +100,7 @@ const options = {
 			// add as many aliases as you like!
 			Api: path.resolve(__dirname, './src/api'),
 			Assets: path.resolve(__dirname, './src/assets'),
+			Utils: path.resolve(__dirname, './src/utils'),
 		},
 		extensions: fileExtensions
 			.map((extension) => `.${extension}`)
