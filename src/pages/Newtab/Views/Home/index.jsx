@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import {
 	Container, Row, Form, Button,
 } from 'react-bootstrap'
-import {postInBrowserStore, clearBrowserStore, getInBrowserStore} from 'Api/bookmarks'
+import {postInBrowserStore, clearBrowserStore, getInBrowserStore} from 'Api'
 import BookmarksList from './BookmarksList'
 
 export default function Newtab() {

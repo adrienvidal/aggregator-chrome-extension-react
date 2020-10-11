@@ -5,12 +5,11 @@ export async function getMetaDataLink(link) {
 			'X-Requested-With': 'XMLHttpRequest',
 		},
 	})
-
 	const resData = await response.text()
 
+	// create htmlElem to get meta infos
 	const myDiv = document.createElement('div')
 	myDiv.innerHTML = resData
-
 	const metaTitle = myDiv.querySelector('title')
 	const metaImage = myDiv.querySelector('meta[property="og:image"]')
 
