@@ -96,7 +96,11 @@ const options = {
 		],
 	},
 	resolve: {
-		alias,
+		alias: {
+			// add as many aliases as you like!
+			Api: path.resolve(__dirname, './src/api'),
+			Assets: path.resolve(__dirname, './src/assets'),
+		},
 		extensions: fileExtensions
 			.map((extension) => `.${extension}`)
 			.concat(['.jsx', '.js', '.css']),

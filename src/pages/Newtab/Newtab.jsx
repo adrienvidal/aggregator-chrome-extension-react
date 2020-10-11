@@ -3,7 +3,7 @@ import './Newtab.scss'
 import {
 	Container, Row, Form, Button,
 } from 'react-bootstrap'
-import {postInBrowserStore, clearBrowserStore, getInBrowserStore} from '../../api/bookmarks'
+import {postInBrowserStore, clearBrowserStore, getInBrowserStore} from 'Api/bookmarks'
 import BookmarksList from './BookmarksList'
 
 const Newtab = () => {

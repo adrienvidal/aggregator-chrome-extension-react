@@ -156,6 +156,7 @@
         // redux
         "no-param-reassign": "off", // this rule is global but needs to be disabled to work w/ latest redux-toolkit (see [immerjs](https://immerjs.github.io/immer/))
         "linebreak-style": "off",
-        "max-len": "off"
+        "max-len": "off",
+        "import/no-unresolved": "off"
     }
 }
