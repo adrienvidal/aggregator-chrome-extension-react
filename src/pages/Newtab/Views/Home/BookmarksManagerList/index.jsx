@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getBookmarksFromFavoritesManager } from '../../../api/bookmarks'
+import { getBookmarksFromFavoritesManager } from 'Api/bookmarks'
 import List from './List'
 // import Card from './Card'
 
