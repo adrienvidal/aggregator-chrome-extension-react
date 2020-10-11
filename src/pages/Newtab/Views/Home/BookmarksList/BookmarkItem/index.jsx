@@ -6,11 +6,11 @@ import {
 export default function BookmarkItem({aggregatorBookmark}) {
 	return (
 		<Card>
-			<Card.Img
-				variant="top"
-				src={aggregatorBookmark.image}
-			/>
 			<Card.Body>
+				<Card.Img
+					variant="top"
+					src={aggregatorBookmark.image}
+				/>
 				<Card.Title>{aggregatorBookmark.title}</Card.Title>
 				<Card.Text>
 					{aggregatorBookmark.description}
