@@ -69,6 +69,11 @@ export default function Newtab() {
 
 			<BookmarksList aggregatorBookmarks={aggregatorBookmarks} />
 
+			<div
+				className=""
+				id="test"
+			/>
+
 		</div>
 	)
 }

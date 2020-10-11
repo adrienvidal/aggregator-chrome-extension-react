@@ -14,6 +14,8 @@ export function getInBrowserStore() {
 	return new Promise((resolve) => {
 		chrome.storage.local.get('aggregatorBookmarks', (result) => {
 			const {aggregatorBookmarks} = result
+
+			console.log('aggregatorBookmarks', aggregatorBookmarks)
 			resolve(aggregatorBookmarks)
 		})
 	})
@@ -37,29 +39,40 @@ export function postInBrowserStore(link) {
 				if (!isLinkExist) {
 					// push entry
 
-					getMetaDataLink()
+					getMetaDataLink(link).then((res) => {
+						aggregatorBookmarks.push({
+							id: aggregatorBookmarks.length + 1,
+							link,
+							title: res.title,
+							image: res.image,
+						})
 
-					aggregatorBookmarks.push({
-						id: aggregatorBookmarks.length + 1,
-						link,
+						// step 3: push chrome storage
+						chrome.storage.local.set({aggregatorBookmarks}, () => {
+							resolve(true)
+						})
 					})
 				} else {
-					alert('Already in bookmarks')
+					console.log('Already in bookmarks')
 				}
 			} else {
 				// create 'aggregatorBookmarks'
-				aggregatorBookmarks = [
-					{
-						id: 1,
-						link,
-					},
-				]
-			}
+				getMetaDataLink(link).then((res) => {
+					aggregatorBookmarks = [
+						{
+							id: 1,
+							link,
+							title: res.title,
+							image: res.image,
+						},
+					]
 
-			// step 3: push chrome storage
-			chrome.storage.local.set({aggregatorBookmarks}, () => {
-				resolve(true)
-			})
+					// step 3: push chrome storage
+					chrome.storage.local.set({aggregatorBookmarks}, () => {
+						resolve(true)
+					})
+				})
+			}
 		})
 	})
 }
