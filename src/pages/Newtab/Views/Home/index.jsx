@@ -10,21 +10,23 @@ export default function Newtab() {
 	const linkRef = useRef(null)
 
 	// get boorkmarks
-	async function getAggregatorBookmarks() {
-		const remoteAggregatorBookmarks = await BrowserStoreApi.get()
-		if (JSON.stringify(remoteAggregatorBookmarks) !== JSON.stringify(aggregatorBookmarks)) {
-			setAggregatorBookmarks(remoteAggregatorBookmarks)
-		}
+	function getAggregatorBookmarks() {
+		BrowserStoreApi.get().then((data) => {
+			if (JSON.stringify(data) !== JSON.stringify(aggregatorBookmarks)) {
+				setAggregatorBookmarks(data)
+			}
+		})
 	}
 
 	// post bookmarks
 	async function onClick(e) {
 		e.preventDefault()
-		await BrowserStoreApi.post(linkRef.current.value)
-		getAggregatorBookmarks()
+		BrowserStoreApi.post(linkRef.current.value).then(() => {
+			getAggregatorBookmarks()
 
-		// reset form
-		linkRef.current.value = null
+			// reset form
+			linkRef.current.value = null
+		})
 	}
 
 	// clear bookmarks
