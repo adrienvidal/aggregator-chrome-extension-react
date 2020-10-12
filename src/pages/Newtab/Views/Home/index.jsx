@@ -1,13 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import {
-	Container, Row, Form, Button,
+	Container, Row, Form, Button, Modal,
 } from 'react-bootstrap'
 import {BrowserStoreApi} from 'Api/browserStore'
 import BookmarksList from './BookmarksList'
 
 export default function Newtab() {
 	const [aggregatorBookmarks, setAggregatorBookmarks] = useState(undefined)
+	const [showModal, setShowModal] = useState(false)
+
 	const linkRef = useRef(null)
+
+	// modal
+	const toggleModal = () => setShowModal(!showModal)
 
 	// get boorkmarks
 	function getAggregatorBookmarks() {
@@ -19,7 +24,7 @@ export default function Newtab() {
 	}
 
 	// post bookmarks
-	async function onClick(e) {
+	function onSubmit(e) {
 		e.preventDefault()
 		BrowserStoreApi.post(linkRef.current.value).then(() => {
 			getAggregatorBookmarks()
@@ -34,6 +39,12 @@ export default function Newtab() {
 		e.preventDefault()
 		BrowserStoreApi.clearAll()
 		getAggregatorBookmarks()
+	}
+
+	const exportJson = async (e) => {
+		e.preventDefault()
+
+		toggleModal()
 	}
 
 	useEffect(() => {
@@ -55,7 +66,7 @@ export default function Newtab() {
 				<Button
 					variant="primary"
 					type="submit"
-					onClick={(e) => onClick(e)}
+					onClick={(e) => onSubmit(e)}
 				>
 					Submit
 				</Button>
@@ -69,13 +80,32 @@ export default function Newtab() {
 				<Button
 					variant="success"
 					type="submit"
-					// onClick={(e) => openModal(e)}
+					onClick={(e) => exportJson(e)}
 				>
 					Export Json
 				</Button>
 			</Form>
 
 			<BookmarksList aggregatorBookmarks={aggregatorBookmarks} />
+
+			<Modal
+				show={showModal}
+				onHide={toggleModal}
+			>
+				<Modal.Header closeButton>
+					<Modal.Title>Export Your Data</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<Form.Control
+						as="textarea"
+						rows={3}
+						style={{height: '80vh'}}
+					>
+						{JSON.stringify(aggregatorBookmarks, null, 2)}
+
+					</Form.Control>
+				</Modal.Body>
+			</Modal>
 
 		</div>
 	)
