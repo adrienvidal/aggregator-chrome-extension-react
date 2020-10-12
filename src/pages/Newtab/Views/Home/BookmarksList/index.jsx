@@ -13,7 +13,7 @@ export default function BookmarksList({aggregatorBookmarks}) {
 
 				{aggregatorBookmarks ? (
 					<Row>
-						{aggregatorBookmarks.map((aggregatorBookmark) => (
+						{aggregatorBookmarks.slice(0).reverse().map((aggregatorBookmark) => (
 							<Col sm={3}>
 								<BookmarkItem
 									aggregatorBookmark={aggregatorBookmark}
