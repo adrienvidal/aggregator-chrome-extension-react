@@ -1,5 +1,5 @@
 export async function getMetaDataLink(link) {
-	const response = await fetch(`https://cors-anywhere.herokuapp.com/${link}`, {
+	const response = await fetch(`https://cors-anywhere-145236.herokuapp.com/${link}`, {
 		method: 'GET',
 		headers: {
 			'X-Requested-With': 'XMLHttpRequest',
