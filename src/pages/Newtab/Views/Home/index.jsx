@@ -64,6 +64,13 @@ export default function Newtab() {
 				>
 					Clear Browser Store
 				</Button>
+				<Button
+					variant="success"
+					type="submit"
+					// onClick={(e) => openModal(e)}
+				>
+					Export Json
+				</Button>
 			</Form>
 
 			<BookmarksList aggregatorBookmarks={aggregatorBookmarks} />

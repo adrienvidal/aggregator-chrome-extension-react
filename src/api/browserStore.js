@@ -45,7 +45,7 @@ class BrowserStore {
 							})
 						})
 					} else {
-						console.log('Already in bookmarks')
+						alert('Already in bookmarks')
 					}
 				} else {
 					// create 'aggregatorBookmarks'
