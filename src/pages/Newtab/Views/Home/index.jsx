@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import {
 	Container, Row, Form, Button,
 } from 'react-bootstrap'
-import {postInBrowserStore, clearBrowserStore, getInBrowserStore} from 'Api'
+import {BrowserStoreApi} from 'Api/browserStore'
 import BookmarksList from './BookmarksList'
 
 export default function Newtab() {
@@ -11,7 +11,7 @@ export default function Newtab() {
 
 	// get boorkmarks
 	async function getAggregatorBookmarks() {
-		const remoteAggregatorBookmarks = await getInBrowserStore()
+		const remoteAggregatorBookmarks = await BrowserStoreApi.get()
 		if (JSON.stringify(remoteAggregatorBookmarks) !== JSON.stringify(aggregatorBookmarks)) {
 			setAggregatorBookmarks(remoteAggregatorBookmarks)
 		}
@@ -20,7 +20,7 @@ export default function Newtab() {
 	// post bookmarks
 	async function onClick(e) {
 		e.preventDefault()
-		await postInBrowserStore(linkRef.current.value)
+		await BrowserStoreApi.post(linkRef.current.value)
 		getAggregatorBookmarks()
 
 		// reset form
@@ -30,7 +30,7 @@ export default function Newtab() {
 	// clear bookmarks
 	const clear = (e) => {
 		e.preventDefault()
-		clearBrowserStore()
+		BrowserStoreApi.clearAll()
 		getAggregatorBookmarks()
 	}
 

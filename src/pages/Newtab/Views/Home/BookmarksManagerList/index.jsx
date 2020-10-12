@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { getBookmarksFromFavoritesManager } from 'Api'
+import { FavoritesManagerApi } from 'Api/favoritesManager'
 import List from './List'
 // import Card from './Card'
 
@@ -7,7 +7,7 @@ export default function BookmarksManagerList() {
 	const [bookmarks, setBookmarks] = useState(null)
 
 	async function getBookmarks() {
-		setBookmarks(await getBookmarksFromFavoritesManager())
+		setBookmarks(await FavoritesManagerApi.get())
 	}
 
 	useEffect(() => {
