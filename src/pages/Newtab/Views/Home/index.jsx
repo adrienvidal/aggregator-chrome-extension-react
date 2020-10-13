@@ -34,6 +34,12 @@ export default function Newtab() {
 		})
 	}
 
+	const deleteItem = (id) => {
+		BrowserStoreApi.delete(id).then(() => {
+			getAggregatorBookmarks()
+		})
+	}
+
 	// clear bookmarks
 	const clear = (e) => {
 		e.preventDefault()
@@ -86,7 +92,10 @@ export default function Newtab() {
 				</Button>
 			</Form>
 
-			<BookmarksList aggregatorBookmarks={aggregatorBookmarks} />
+			<BookmarksList
+				aggregatorBookmarks={aggregatorBookmarks}
+				deleteItem={deleteItem}
+			/>
 
 			<Modal
 				show={showModal}

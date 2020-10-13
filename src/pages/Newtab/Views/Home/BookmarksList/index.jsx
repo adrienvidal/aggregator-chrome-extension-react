@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap'
 import BookmarkItem from './BookmarkItem'
 
-export default function BookmarksList({aggregatorBookmarks}) {
+export default function BookmarksList({aggregatorBookmarks, deleteItem}) {
 	// const [aggregatorBookmarks, setAggregatorBookmarks] = useState(null)
 
 	return (
@@ -20,6 +20,7 @@ export default function BookmarksList({aggregatorBookmarks}) {
 							>
 								<BookmarkItem
 									aggregatorBookmark={aggregatorBookmark}
+									deleteItem={deleteItem}
 								/>
 							</Col>
 						)) }
