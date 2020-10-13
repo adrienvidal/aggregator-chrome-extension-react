@@ -109,10 +109,8 @@ export default function Newtab() {
 						as="textarea"
 						rows={3}
 						style={{height: '80vh'}}
-					>
-						{JSON.stringify(aggregatorBookmarks, null, 2)}
-
-					</Form.Control>
+						defaultValue={JSON.stringify(aggregatorBookmarks, null, 2)}
+					/>
 				</Modal.Body>
 			</Modal>
 

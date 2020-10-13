@@ -30,9 +30,14 @@ class BrowserStore {
 					if (!isLinkExist) {
 						// push entry
 
+						const maxId = aggregatorBookmarks.reduce(
+							(max, aggregatorBookmark) => (aggregatorBookmark.id > max ? aggregatorBookmark.id : max),
+							aggregatorBookmarks[0].id
+						)
+
 						getMetaDataLink(link).then((res) => {
 							aggregatorBookmarks.push({
-								id: aggregatorBookmarks.length + 1,
+								id: maxId + 1,
 								link,
 								title: res.title,
 								description: res.description,
