@@ -8,6 +8,7 @@ import BookmarksList from './BookmarksList'
 export default function Newtab() {
 	const [aggregatorBookmarks, setAggregatorBookmarks] = useState(undefined)
 	const [showModal, setShowModal] = useState(false)
+	const [isLoading, setLoading] = useState(false)
 
 	const linkRef = useRef(null)
 
@@ -26,11 +27,15 @@ export default function Newtab() {
 	// post bookmarks
 	function onSubmit(e) {
 		e.preventDefault()
+		setLoading(true)
 		BrowserStoreApi.post(linkRef.current.value).then(() => {
+			setLoading(false)
 			getAggregatorBookmarks()
 
 			// reset form
 			linkRef.current.value = null
+		}).catch(() => {
+			setLoading(false)
 		})
 	}
 
@@ -72,9 +77,10 @@ export default function Newtab() {
 				<Button
 					variant="primary"
 					type="submit"
+					disabled={isLoading}
 					onClick={(e) => onSubmit(e)}
 				>
-					Submit
+					{isLoading ? 'Loading…' : 'Submit'}
 				</Button>
 				<Button
 					variant="secondary"

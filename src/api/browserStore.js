@@ -13,13 +13,14 @@ class BrowserStore {
 	}
 
 	post(link) {
-		return new Promise((resolve) => {
+		return new Promise((resolve, reject) => {
 			chrome.storage.local.get('aggregatorBookmarks', (result) => {
 				// step 1: must be link
 				const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
 				const regex = new RegExp(expression)
 				if (!link.match(regex)) {
 					alert('Not an url')
+					reject()
 					return null
 				}
 
