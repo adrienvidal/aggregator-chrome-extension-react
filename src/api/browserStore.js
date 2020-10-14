@@ -1,4 +1,5 @@
 import {getMetaDataLink} from 'Utils'
+import { v4 as uuidv4 } from 'uuid'
 
 class BrowserStore {
 	get() {
@@ -38,7 +39,7 @@ class BrowserStore {
 
 						getMetaDataLink(link).then((res) => {
 							aggregatorBookmarks.push({
-								id: maxId + 1,
+								id: uuidv4(),
 								link,
 								title: res.title,
 								description: res.description,
@@ -59,7 +60,7 @@ class BrowserStore {
 					getMetaDataLink(link).then((res) => {
 						aggregatorBookmarks = [
 							{
-								id: 1,
+								id: uuidv4(),
 								link,
 								title: res.title,
 								description: res.description,
