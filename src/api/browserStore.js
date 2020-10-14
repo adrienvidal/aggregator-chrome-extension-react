@@ -26,53 +26,28 @@ class BrowserStore {
 				}
 
 				// step 2: push local
-				let {aggregatorBookmarks} = result
-				if (aggregatorBookmarks) {
-					const isLinkExist = aggregatorBookmarks.some((el) => el.link === link)
-					if (!isLinkExist) {
-						// push entry
+				const aggregatorBookmarks = result.aggregatorBookmarks || []
 
-						const maxId = aggregatorBookmarks.reduce(
-							(max, aggregatorBookmark) => (aggregatorBookmark.id > max ? aggregatorBookmark.id : max),
-							aggregatorBookmarks[0].id
-						)
-
-						getMetaDataLink(link).then((res) => {
-							aggregatorBookmarks.push({
-								id: uuidv4(),
-								link,
-								title: res.title,
-								description: res.description,
-								image: res.image,
-							})
-
-							// step 3: push chrome storage
-							chrome.storage.local.set({aggregatorBookmarks}, () => {
-								resolve(true)
-							})
-						})
-					} else {
-						alert('Already in bookmarks')
-						reject()
-					}
-				} else {
-					// create 'aggregatorBookmarks'
+				const isLinkExist = aggregatorBookmarks.some((el) => el.link === link)
+				if (!isLinkExist) {
+					// push entry
 					getMetaDataLink(link).then((res) => {
-						aggregatorBookmarks = [
-							{
-								id: uuidv4(),
-								link,
-								title: res.title,
-								description: res.description,
-								image: res.image,
-							},
-						]
+						aggregatorBookmarks.push({
+							id: uuidv4(),
+							link,
+							title: res.title,
+							description: res.description,
+							image: res.image,
+						})
 
 						// step 3: push chrome storage
 						chrome.storage.local.set({aggregatorBookmarks}, () => {
-							resolve(true)
+							resolve()
 						})
 					})
+				} else {
+					alert('Already in bookmarks')
+					reject()
 				}
 			})
 		})
