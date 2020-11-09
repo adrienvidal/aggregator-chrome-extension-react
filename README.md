@@ -1,5 +1,9 @@
 # Aggregator-chrome-extension-react
 
+## Boilerplate
+
+https://github.com/lxieyang/chrome-extension-boilerplate-react
+
 ## Installing and Running
 
 1. Check if your [Node.js](https://nodejs.org/) version is >= **10.13**.
